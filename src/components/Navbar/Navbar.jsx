@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { styled, alpha } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 import './Navbar.css';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
+
 import InputBase from '@mui/material/InputBase';
-import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 import { grey } from '@mui/material/colors';
+import { useDispatch } from 'react-redux';
+import { filterThunk } from '../../features/search/filterThunk';
+
 
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: '5em',
-    backgroundColor: grey[100],
+    backgroundColor: grey[200],
 
     marginRight: theme.spacing(2),
     marginLeft: 0,
@@ -40,7 +40,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
     '& .MuiInputBase-input': {
         padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         transition: theme.transitions.create('width'),
         width: '100%',
@@ -59,27 +58,74 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 
 const Navbar = () => {
-    const [isFavorites, setIsFavorites] = useState(true);
+    const [isFavorites, setIsFavorites] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const dispatch = useDispatch();
+
+    const handleClick = () => {
+        isFavorites ? setIsFavorites(false) : setIsFavorites(true);
+    }
+
+    const handleSubmit = () => {
+        console.log(searchTerm)
+        dispatch(filterThunk(searchTerm));
+    }
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="fixed" color='transparent'>
-                <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <img src="/PA.png" className='logo-img' />
-                    <Search>
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase
-                            placeholder="Search…"
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
-                    </Search>
 
-                    <Button sx={{ color: 'white', backgroundColor: 'black', borderRadius: '5em', padding: '0.2em 1em' }}>{isFavorites ? 'Home' : 'Favorites'}</Button>
-                </Toolbar>
-            </AppBar>
-        </Box>
+        <header className='navBar'>
+            <div>
+                <img src="/PA.png" className='logo-img' />
+            </div>
+            <div>
+                <Search>
+                    <SearchIconWrapper >
+                        <SearchIcon onClick={handleSubmit} />
+                    </SearchIconWrapper>
+                    <StyledInputBase
+                        placeholder="Search…"
+                        inputProps={{ 'aria-label': 'search' }}
+                        onChange={e => setSearchTerm(e.target.value)}
+                    />
+                </Search>
+            </div>
+            <div>
+                <button className='navBar__btn' onClick={handleClick}>{isFavorites ? 'Home' : 'Favorites'}</button>
+            </div>
+        </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // <Box sx={{ flexGrow: 1 }}>
+        //     <AppBar position="static" color='transparent'>
+        //         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        //             
+        //             
+
+        //             <Button
+        //                 sx={{ color: 'white', backgroundColor: 'black', borderRadius: '5em', padding: '0.2em 1.5em' }}
+        //                 onClick={() => handleClick}
+        //                 disableFocusRipple
+        //             >
+        //                 {isFavorites ? 'Home' : 'Favorites'}
+        //             </Button>
+        //         </Toolbar>
+        //     </AppBar>
+        // </Box>
 
     )
 }

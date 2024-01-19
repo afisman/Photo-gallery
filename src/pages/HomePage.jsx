@@ -1,8 +1,11 @@
 import React from 'react'
+import ImageList from '../components/ImageList/ImageList'
+
 
 const HomePage = () => {
+
     return (
-        <div>HomePage</div>
+        <ImageList />
     )
 }
 
