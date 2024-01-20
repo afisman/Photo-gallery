@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import './Navbar.css';
 
 import InputBase from '@mui/material/InputBase';
+import IconButton from "@mui/material/IconButton";
 import SearchIcon from '@mui/icons-material/Search';
 import { grey } from '@mui/material/colors';
 import { useDispatch } from 'react-redux';
@@ -78,16 +79,20 @@ const Navbar = () => {
                 <img src="/PA.png" className='logo-img' />
             </div>
             <div>
-                <Search>
-                    <SearchIconWrapper >
-                        <SearchIcon onClick={handleSubmit} />
-                    </SearchIconWrapper>
-                    <StyledInputBase
-                        placeholder="Search…"
-                        inputProps={{ 'aria-label': 'search' }}
-                        onChange={e => setSearchTerm(e.target.value)}
+                <form className='searchBar' onSubmit={handleSubmit}>
+                    <IconButton type="submit" aria-label="search">
+                        <SearchIcon className='searchBar__icon' />
+                    </IconButton>
+                    <input type="text"
+                        className='searchBar__input'
+                        placeholder='Search images ...'
+                        value={searchTerm}
+                        onChange={(e) => {
+                            setSearchTerm(e.target.value)
+                        }}
                     />
-                </Search>
+
+                </form>
             </div>
             <div>
                 <button className='navBar__btn' onClick={handleClick}>{isFavorites ? 'Home' : 'Favorites'}</button>
@@ -107,7 +112,16 @@ const Navbar = () => {
 
 
 
-
+        //  <Search>
+        //                     <SearchIconWrapper >
+        //                         <SearchIcon onClick={handleSubmit} />
+        //                     </SearchIconWrapper>
+        //                     <StyledInputBase
+        //                         placeholder="Search…"
+        //                         inputProps={{ 'aria-label': 'search' }}
+        //                         onChange={e => setSearchTerm(e.target.value)}
+        //                     />
+        //                 </Search>
 
 
         // <Box sx={{ flexGrow: 1 }}>

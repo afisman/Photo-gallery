@@ -16,6 +16,21 @@
     height: 80px;
 }
 
+.searchBar {
+    background-color: #EDE8E8;
+    border-radius: 5em;
+}
+
+.searchBar__icon {
+    color: #676464;
+    background-color: transparent;
+}
+
+.searchBar__input {
+    border: none;
+    background-color: transparent;
+}
+
 .navBar__btn {
     margin-right: 2rem;
     padding: .5rem 1.5rem;
