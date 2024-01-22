@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchError, fetchSearchItems, fetchStatus } from '../../features/search/searchSlice';
 import { getFavoriteImages, addFavorite, removeFavorite } from '../../features/favorites/favoritesSlice';
-import { filterThunk } from '../../features/search/filterThunk';
-import { FavoriteBorderOutlined, FavoriteOutlined, Download } from '@mui/icons-material';
 import './FavoritesList.css'
 import ImageCard from '../ImageCard/ImageCard';
 

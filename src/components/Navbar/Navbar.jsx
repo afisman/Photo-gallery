@@ -12,52 +12,6 @@ import { useDispatch } from 'react-redux';
 import { filterThunk } from '../../features/search/filterThunk';
 
 
-
-const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
-    borderRadius: '5em',
-    backgroundColor: grey[200],
-
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(3),
-        width: 'auto',
-    },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('md')]: {
-            width: '20em',
-        },
-        [theme.breakpoints.up('lg')]: {
-            width: '50em',
-        },
-    },
-}));
-
-
-
-
-
-
 const Navbar = () => {
     const [isFavorites, setIsFavorites] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
@@ -95,51 +49,11 @@ const Navbar = () => {
                 </form>
             </div>
             <div>
-                <button className='navBar__btn' onClick={handleClick}>{isFavorites ? 'Home' : 'Favorites'}</button>
+                <Link to={isFavorites ? '/' : '/favorites'}>
+                    <button className='navBar__btn' onClick={handleClick}>{isFavorites ? 'Home' : 'Favorites'}</button>
+                </Link>
             </div>
         </header>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //  <Search>
-        //                     <SearchIconWrapper >
-        //                         <SearchIcon onClick={handleSubmit} />
-        //                     </SearchIconWrapper>
-        //                     <StyledInputBase
-        //                         placeholder="Search…"
-        //                         inputProps={{ 'aria-label': 'search' }}
-        //                         onChange={e => setSearchTerm(e.target.value)}
-        //                     />
-        //                 </Search>
-
-
-        // <Box sx={{ flexGrow: 1 }}>
-        //     <AppBar position="static" color='transparent'>
-        //         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        //             
-        //             
-
-        //             <Button
-        //                 sx={{ color: 'white', backgroundColor: 'black', borderRadius: '5em', padding: '0.2em 1.5em' }}
-        //                 onClick={() => handleClick}
-        //                 disableFocusRipple
-        //             >
-        //                 {isFavorites ? 'Home' : 'Favorites'}
-        //             </Button>
-        //         </Toolbar>
-        //     </AppBar>
-        // </Box>
 
     )
 }

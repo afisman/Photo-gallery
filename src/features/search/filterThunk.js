@@ -4,13 +4,15 @@ const apiKey = import.meta.env.VITE_API_KEY;
 
 export const filterThunk = createAsyncThunk(
     "search/filterThunk",
-    async (searchTerm, page) => {
+    async (searchTerm) => {
         let apiUrl;
         if (searchTerm === '') {
             apiUrl = `https://api.unsplash.com/photos/random?client_id=${apiKey}&count=20`;
         } else {
-            apiUrl = `https://api.unsplash.com/search/photos?query=${searchTerm}&per_page=20&page=${page}&client_id=${apiKey}`;
+            apiUrl = `https://api.unsplash.com/search/photos?client_id=${apiKey}&query=${searchTerm}`;
         }
+
+        console.log(apiUrl);
 
         const response = await fetch(apiUrl);
         const json = await response.json();
