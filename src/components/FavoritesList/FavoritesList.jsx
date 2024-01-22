@@ -5,6 +5,7 @@ import { getFavoriteImages, addFavorite, removeFavorite } from '../../features/f
 import { filterThunk } from '../../features/search/filterThunk';
 import { FavoriteBorderOutlined, FavoriteOutlined, Download } from '@mui/icons-material';
 import './FavoritesList.css'
+import ImageCard from '../ImageCard/ImageCard';
 
 const FavoritesList = () => {
     const dispatch = useDispatch();
@@ -15,9 +16,22 @@ const FavoritesList = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [images, setImages] = useState([]);
 
-    console.log('En favoritos')
+    const isFavorite = (image, favorites) => {
+        return favorites?.some((favorite) => favorite.id === image.id)
+    }
+
+    const handleFavorite = (image) => {
+        isFavorite(image, favorites) ? dispatch(removeFavorite(image.id)) : dispatch(addFavorite(image));
+    }
+
     return (
-        <div className='favorites'>Favoriteslist</div>
+        <div className='favoritesList'>
+            {
+                favorites.map((favorite) => (
+                    <ImageCard key={favorite.id} image={favorite} handleFavorite={handleFavorite} />
+                ))
+            }
+        </div>
     )
 }
 

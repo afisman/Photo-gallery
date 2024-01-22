@@ -5,6 +5,7 @@ import { getFavoriteImages, addFavorite, removeFavorite } from '../../features/f
 import { filterThunk } from '../../features/search/filterThunk';
 import './ImageList.css'
 import { FavoriteBorderOutlined, FavoriteOutlined, Download } from '@mui/icons-material';
+import ImageCard from '../ImageCard/ImageCard';
 
 
 
@@ -18,13 +19,13 @@ const ImageList = () => {
     const [images, setImages] = useState([]);
 
 
+
     const isFavorite = (image, favorites) => {
         return favorites?.some((favorite) => favorite.id === image.id)
     }
 
     const handleFavorite = (image) => {
         isFavorite(image, favorites) ? dispatch(removeFavorite(image.id)) : dispatch(addFavorite(image));
-        console.log(favorites)
     }
 
     useEffect(() => {
@@ -56,16 +57,19 @@ const ImageList = () => {
                     <p>Loading images ...</p>
                 ) :
                     images.map((image) => (
-                        <div key={image.id} className='imgList__card' >
-                            <img src={image.url} alt={image.description} className='imgList__card__img' />
-                            {
-                                isFavorite(image) ?
-                                    <FavoriteOutlined className='imglist__card__icon__heart' onClick={() => { handleFavorite(image) }} />
-                                    :
-                                    <FavoriteBorderOutlined className='imgList__card__icon__heart' onClick={() => { handleFavorite(image) }} />
-                            }
-                            <Download className='imgList__card__icon__download' />
-                        </div>
+
+                        <ImageCard key={image.id} image={image} handleFavorite={handleFavorite} />
+
+                        // <div key={image.id} className='imgList__card' >
+                        //     <img src={image.url} alt={image.description} className='imgList__card__img' />
+                        //     {
+                        //         isFavorite(image) ?
+                        //             <FavoriteOutlined className='imglist__card__icon__heart' onClick={() => { handleFavorite(image) }} />
+                        //             :
+                        //             <FavoriteBorderOutlined className='imgList__card__icon__heart' onClick={() => { handleFavorite(image) }} />
+                        //     }
+                        //     <Download className='imgList__card__icon__download' />
+                        // </div>
                     ))
             }
         </div >

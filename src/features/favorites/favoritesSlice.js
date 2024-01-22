@@ -12,8 +12,6 @@ export const favoritesSlice = createSlice({
             console.log(newFavorites)
             state.favoriteImages.push(newFavorites);
             localStorage.setItem("favorites", JSON.stringify(state.favoriteImages));
-
-
         },
         removeFavorite: (state, action) => {
             const deleteId = action.payload;
