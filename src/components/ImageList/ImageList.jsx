@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchError, fetchSearchItems, fetchStatus } from '../../features/search/searchSlice';
-import { getFavoriteImages } from '../../features/favorites/favoritesSlice';
+import { getFavoriteImages, addFavorite, removeFavorite } from '../../features/favorites/favoritesSlice';
 import { filterThunk } from '../../features/search/filterThunk';
 import './ImageList.css'
 import { FavoriteBorderOutlined, FavoriteOutlined, Download } from '@mui/icons-material';
@@ -17,11 +17,15 @@ const ImageList = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [images, setImages] = useState([]);
 
-    const isFavorite = (image, favorites) => {
 
-        return favorites.includes((favorite) => favorite.id === image.id)
+    const isFavorite = (image, favorites) => {
+        return favorites?.some((favorite) => favorite.id === image.id)
     }
 
+    const handleFavorite = (image) => {
+        isFavorite(image, favorites) ? dispatch(removeFavorite(image.id)) : dispatch(addFavorite(image));
+        console.log(favorites)
+    }
 
     useEffect(() => {
         if (status == 'idle') {
@@ -35,15 +39,14 @@ const ImageList = () => {
                     width: img.width,
                     height: img.height,
                     likes: img.likes,
-                    favorite: isFavorite(img, favorites)
                 }
             ));
-            console.log(imagesToUpdate)
             setImages(imagesToUpdate);
             setIsLoading(false);
 
         } else if (status === 'rejected') {
-
+            alert(error);
+            setIsLoading(false);
         }
     }, [dispatch, status])
     return (
@@ -53,13 +56,13 @@ const ImageList = () => {
                     <p>Loading images ...</p>
                 ) :
                     images.map((image) => (
-                        <div key={image.id} className='imgList__card'>
+                        <div key={image.id} className='imgList__card' >
                             <img src={image.url} alt={image.description} className='imgList__card__img' />
                             {
-                                image.favorite === true ?
-                                    <FavoriteOutlined className='imglist__card__icon__heart' />
+                                isFavorite(image) ?
+                                    <FavoriteOutlined className='imglist__card__icon__heart' onClick={() => { handleFavorite(image) }} />
                                     :
-                                    <FavoriteBorderOutlined className='imgList__card__icon__heart' />
+                                    <FavoriteBorderOutlined className='imgList__card__icon__heart' onClick={() => { handleFavorite(image) }} />
                             }
                             <Download className='imgList__card__icon__download' />
                         </div>
