@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchError, fetchSearchItems, fetchStatus } from '../../features/search/searchSlice';
-import { getFavoriteImages, addFavorite, removeFavorite } from '../../features/favorites/favoritesSlice';
+import { getFavoriteImages, addFavorite, removeFavorite, filterFavorite } from '../../features/favorites/favoritesSlice';
 import { filterThunk } from '../../features/search/filterThunk';
 import './ImageList.css'
 import { FavoriteBorderOutlined, FavoriteOutlined, Download } from '@mui/icons-material';
-import ImageCard from '../ImageCard/ImageCard';
+import { useLocation } from 'react-router-dom';
 
 
 
@@ -17,6 +17,7 @@ const ImageList = () => {
     const status = useSelector(fetchStatus);
     const [isLoading, setIsLoading] = useState(true);
     const [images, setImages] = useState([]);
+    const [filter, setFilter] = useState('')
 
 
 
@@ -28,11 +29,24 @@ const ImageList = () => {
         isFavorite(image, favorites) ? dispatch(removeFavorite(image.id)) : dispatch(addFavorite(image));
     }
 
+    const handleFilter = (e) => {
+        console.log(e.target.value)
+        dispatch(filterThunk(e.target.value))
+    }
+
     useEffect(() => {
         if (status == 'idle') {
             dispatch(filterThunk(''));
         } else if (status === 'fulfilled') {
-            const imagesToUpdate = data.slice(0, 20).map((img) => (
+            // let imgList;
+            // if (data.hasOwnProperty(results) === true) {
+            //     console.log(data)
+            //     // imgList = data?.results;
+            // } else {
+            //     imgList = data
+            // }
+            console.log(data)
+            const imagesToUpdate = data.map((img) => (
                 {
                     id: img.id,
                     url: img.urls.full,
@@ -51,28 +65,39 @@ const ImageList = () => {
         }
     }, [dispatch, status])
     return (
-        <div className='imgList'>
-            {
-                isLoading ? (
-                    <p>Loading images ...</p>
-                ) :
-                    images.map((image) => (
+        <div className="container__list">
+            <select
+                name=""
+                id="listFilters"
+                onChange={handleFilter}
+            >
+                <option value="/"></option>
+                <option value="building">Building</option>
+                <option value="landscape">Landscape</option>
+                <option value="animal">Animal</option>
+                <option value="portrait">Portrait</option>
+            </select>
 
-                        <ImageCard key={image.id} image={image} handleFavorite={handleFavorite} />
-
-                        // <div key={image.id} className='imgList__card' >
-                        //     <img src={image.url} alt={image.description} className='imgList__card__img' />
-                        //     {
-                        //         isFavorite(image) ?
-                        //             <FavoriteOutlined className='imglist__card__icon__heart' onClick={() => { handleFavorite(image) }} />
-                        //             :
-                        //             <FavoriteBorderOutlined className='imgList__card__icon__heart' onClick={() => { handleFavorite(image) }} />
-                        //     }
-                        //     <Download className='imgList__card__icon__download' />
-                        // </div>
-                    ))
-            }
-        </div >
+            <div className='imgList'>
+                {
+                    isLoading ? (
+                        <p>Loading images ...</p>
+                    ) :
+                        images.map((image) => (
+                            <div key={image.id} className='imgList__card' >
+                                <img src={image.url} alt={image.description} className='imgList__card__img' />
+                                {
+                                    isFavorite(image) ?
+                                        <FavoriteOutlined className='imglist__card__icon__heart' onClick={() => { handleFavorite(image) }} />
+                                        :
+                                        <FavoriteBorderOutlined className='imgList__card__icon__heart' onClick={() => { handleFavorite(image) }} />
+                                }
+                                <Download className='imgList__card__icon__download' />
+                            </div>
+                        ))
+                }
+            </div >
+        </div>
     )
 }
 

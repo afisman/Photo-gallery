@@ -40,8 +40,18 @@
         gap: 1rem;
     }
 
+    .details__img {
+        padding: 4rem 1rem 1rem 1rem;
+    }
+
     .details__img__img {
-        width: 30rem;
-        height: 30rem;
+        width: 100%;
+        height: auto;
+    }
+
+    .details__description {
+        padding-top: 0;
+        display: flex;
+        flex-direction: column-reverse;
     }
 }

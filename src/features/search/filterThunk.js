@@ -16,6 +16,7 @@ export const filterThunk = createAsyncThunk(
 
         const response = await fetch(apiUrl);
         const json = await response.json();
+        console.log(json)
         return json;
     }
 )

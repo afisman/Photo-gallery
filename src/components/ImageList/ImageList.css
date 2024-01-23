@@ -1,12 +1,16 @@
+.container__list {
+    margin-top: 5rem;
+
+}
+
 .imgList {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
     padding: 3rem;
-    margin-top: 5rem;
 }
 
-/* .imgList__card {
+.imgList__card {
     position: relative;
 }
 
@@ -50,7 +54,7 @@
     color: black;
     background-color: rgba(255, 255, 255, .3);
     transform: scale(1.1);
-} */
+}
 
 @media screen and (max-width:540px) {
     .imgList {

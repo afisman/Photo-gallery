@@ -17,7 +17,12 @@ export const searchSlice = createSlice({
             })
             .addCase(filterThunk.fulfilled, (state, action) => {
                 state.status = 'fulfilled';
-                state.searchItems = action.payload;
+                if (action.payload.hasOwnProperty('results')) {
+                    state.searchItems = action.payload.results;
+
+                } else {
+                    state.searchItems = action.payload;
+                }
             })
             .addCase(filterThunk.rejected, (state, action) => {
                 state.status = 'rejected';

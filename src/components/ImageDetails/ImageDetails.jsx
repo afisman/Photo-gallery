@@ -25,13 +25,21 @@ const ImageDetails = () => {
             </div>
 
             <div className='details__description'>
-                <h3>Description</h3>
+                <div>
 
-                <p>{image.description || 'No description available'}</p>
+                    <div>
 
-                <h4>Likes</h4>
+                        <h3>Description</h3>
 
-                <p>{image.likes}</p>
+                        <p>{image.description || 'No description available'}</p>
+                    </div>
+                    <div>
+
+                        <h4>Likes</h4>
+
+                        <p>{image.likes}</p>
+                    </div>
+                </div>
 
                 <div className='details__description__icons'>
                     <Download style={{ fontSize: '50px' }} />
