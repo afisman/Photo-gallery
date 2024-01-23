@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFavoriteImages, addFavorite, removeFavorite, sortFavorite } from '../../features/favorites/favoritesSlice';
@@ -29,6 +29,8 @@ const FavoritesList = () => {
                 <option value="width">Width</option>
                 <option value="height">Height</option>
                 <option value="likes">Likes</option>
+                <option value="dateAdded">Date added</option>
+
             </select>
             <div className='favList'>
                 {

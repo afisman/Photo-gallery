@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Delete, Edit, Download, KeyboardReturn, Save } from '@mui/icons-material';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getFavoriteImages, addFavorite, removeFavorite, updateFavorite } from '../../features/favorites/favoritesSlice';
+import { getFavoriteImages, removeFavorite, updateFavorite } from '../../features/favorites/favoritesSlice';
 import './ImageDetails.css';
 
 
