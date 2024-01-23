@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchError, fetchSearchItems, fetchStatus } from '../../features/search/searchSlice';
-import { getFavoriteImages, addFavorite, removeFavorite, filterFavorite } from '../../features/favorites/favoritesSlice';
+import { getFavoriteImages, addFavorite, removeFavorite } from '../../features/favorites/favoritesSlice';
 import { filterThunk } from '../../features/search/filterThunk';
 import './ImageList.css'
 import { FavoriteBorderOutlined, FavoriteOutlined, Download } from '@mui/icons-material';
-import { useLocation } from 'react-router-dom';
 
 
 
@@ -17,7 +16,6 @@ const ImageList = () => {
     const status = useSelector(fetchStatus);
     const [isLoading, setIsLoading] = useState(true);
     const [images, setImages] = useState([]);
-    const [filter, setFilter] = useState('')
 
 
 
@@ -38,14 +36,7 @@ const ImageList = () => {
         if (status == 'idle') {
             dispatch(filterThunk(''));
         } else if (status === 'fulfilled') {
-            // let imgList;
-            // if (data.hasOwnProperty(results) === true) {
-            //     console.log(data)
-            //     // imgList = data?.results;
-            // } else {
-            //     imgList = data
-            // }
-            console.log(data)
+
             const imagesToUpdate = data.map((img) => (
                 {
                     id: img.id,

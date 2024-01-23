@@ -4,7 +4,6 @@ export const favoritesSlice = createSlice({
     name: 'favorites',
     initialState: {
         favoriteImages: JSON.parse(localStorage.getItem("favorites")) || [],
-        filter: null,
     },
     reducers: {
         addFavorite: (state, action) => {
@@ -26,20 +25,14 @@ export const favoritesSlice = createSlice({
             ))
             localStorage.setItem("favorites", JSON.stringify(state.favoriteImages));
         },
-        filterFavorite: (state, action) => {
-            state.favoriteImages = state.favoriteImages.filter((img) => (
-                img.description.toLowerCase().includes(action.payload)
-            ))
-            console.log(state.favoriteImages)
+        sortFavorite: (state, action) => {
+            state.favoriteImages = state.favoriteImages.sort((a, b) => a[action.payload] < b[action.payload] ? 1 : -1)
         }
     }
 });
 
 export const getFavoriteImages = (state) => state.favorites.favoriteImages;
-export const getFilter = (state) => state.favorites.filter;
 
-
-
-export const { addFavorite, removeFavorite, updateFavorite, filterFavorite } = favoritesSlice.actions;
+export const { addFavorite, removeFavorite, updateFavorite, sortFavorite } = favoritesSlice.actions;
 
 export default favoritesSlice.reducer;

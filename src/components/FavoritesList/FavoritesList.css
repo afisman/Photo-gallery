@@ -1,5 +1,9 @@
-.favList {
+.favContainer {
     margin-top: 5rem;
+
+}
+
+.favList {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
@@ -53,7 +57,7 @@
 }
 
 @media screen and (max-width:540px) {
-    .favList {
+    .fav List {
         grid-template-columns: 1fr;
     }
 
