@@ -36,6 +36,7 @@ const ImageList = () => {
         if (status == 'idle') {
             dispatch(filterThunk(''));
         } else if (status === 'fulfilled') {
+            console.log(data[0])
 
             const imagesToUpdate = data.map((img) => (
                 {
@@ -45,6 +46,7 @@ const ImageList = () => {
                     width: img.width,
                     height: img.height,
                     likes: img.likes,
+
                 }
             ));
             setImages(imagesToUpdate);

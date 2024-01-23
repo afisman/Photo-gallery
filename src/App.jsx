@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import './App.css'
@@ -9,7 +9,6 @@ import ImageDetails from './components/ImageDetails/ImageDetails'
 import FavoritesList from './components/FavoritesList/FavoritesList';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>

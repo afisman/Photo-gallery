@@ -34,6 +34,39 @@
     height: 5rem;
 }
 
+.modalBox {
+    margin: 0 auto;
+    width: 60%;
+    padding: 4rem 4rem 4rem 2rem;
+}
+
+.editForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.editForm label {
+    color: white;
+    font-family: Poppins, sans-serif;
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.editForm textarea {
+    font-size: 1.5rem;
+    font-family: Poppins, sans-serif;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    border-radius: .5rem;
+}
+
+.modal__icons {
+    display: flex;
+    justify-content: space-around;
+}
+
 @media screen and (max-width:540px) {
     .details {
         grid-template-columns: 1fr;

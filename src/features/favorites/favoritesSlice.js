@@ -20,7 +20,7 @@ export const favoritesSlice = createSlice({
         },
         updateFavorite: (state, action) => {
             const updatedImage = action.payload;
-            state.favorites = state.favoriteImages.map((img) => (
+            state.favoriteImages = state.favoriteImages.map((img) => (
                 img.id === updatedImage.id ? updatedImage : img
             ))
             localStorage.setItem("favorites", JSON.stringify(state.favoriteImages));
