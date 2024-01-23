@@ -3,10 +3,11 @@ import { Route, Routes } from 'react-router-dom';
 
 import './App.css'
 import Navbar from './components/Navbar/Navbar';
-import HomePage from './pages/HomePage';
 import Footer from './components/Footer/Footer';
 import ImageDetails from './components/ImageDetails/ImageDetails'
 import FavoritesList from './components/FavoritesList/FavoritesList';
+import ImageList from './components/ImageList/ImageList';
+
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path='/' element={<HomePage />} />
+        <Route path='/' element={<ImageList />} />
         <Route path='/favorites' element={<FavoritesList />} />
         <Route path='/favorites/:id' element={<ImageDetails />} />
       </Routes>

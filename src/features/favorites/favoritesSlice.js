@@ -8,13 +8,11 @@ export const favoritesSlice = createSlice({
     reducers: {
         addFavorite: (state, action) => {
             const newFavorites = action.payload;
-            console.log(newFavorites)
             state.favoriteImages.push(newFavorites);
             localStorage.setItem("favorites", JSON.stringify(state.favoriteImages));
         },
         removeFavorite: (state, action) => {
             const deleteId = action.payload;
-            console.log(deleteId)
             state.favoriteImages = state.favoriteImages.filter((img) => img.id !== deleteId);
             localStorage.setItem("favorites", JSON.stringify(state.favoriteImages));
         },

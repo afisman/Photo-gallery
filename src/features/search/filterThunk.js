@@ -12,11 +12,9 @@ export const filterThunk = createAsyncThunk(
             apiUrl = `https://api.unsplash.com/search/photos?client_id=${apiKey}&query=${searchTerm}`;
         }
 
-        console.log(apiUrl);
 
         const response = await fetch(apiUrl);
         const json = await response.json();
-        console.log(json)
         return json;
     }
 )

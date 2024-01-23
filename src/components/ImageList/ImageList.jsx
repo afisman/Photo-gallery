@@ -32,8 +32,6 @@ const ImageList = () => {
         if (status == 'idle') {
             dispatch(filterThunk(''));
         } else if (status === 'fulfilled') {
-            console.log(data[0].created_at)
-
             const imagesToUpdate = data.map((img) => (
                 {
                     id: img.id,
@@ -62,7 +60,7 @@ const ImageList = () => {
                 onChange={handleFilter}
                 className='img__filters'
             >
-                <option value=""></option>
+                <option value="">Filter</option>
                 <option value="building">Building</option>
                 <option value="landscape">Landscape</option>
                 <option value="animal">Animal</option>

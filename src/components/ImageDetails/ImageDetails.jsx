@@ -51,7 +51,7 @@ const ImageDetails = () => {
                             value={editData || ''}
                             onChange={(e) => setEditData(e.target.value)}
                             cols="30"
-                            rows="20"
+                            rows="10"
                         />
                         <div className='modal__icons'>
                             <Save

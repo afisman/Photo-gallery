@@ -25,7 +25,7 @@ const FavoritesList = () => {
     return (
         <div className="favContainer">
             <select name="" id="favSort" onChange={handleSort} className='favFilters'>
-                <option value=""></option>
+                <option value="">Filter</option>
                 <option value="width">Width</option>
                 <option value="height">Height</option>
                 <option value="likes">Likes</option>
