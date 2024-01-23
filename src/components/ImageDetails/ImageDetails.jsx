@@ -5,8 +5,10 @@ import { getFavoriteImages, addFavorite, removeFavorite, updateFavorite } from '
 import './ImageDetails.css';
 
 
+
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Modal } from '@mui/material';
+import { handleDownload } from '../../utils/download';
 
 
 const ImageDetails = () => {
@@ -35,8 +37,6 @@ const ImageDetails = () => {
         dispatch(updateFavorite(updateData))
         handleModalClose()
     }
-
-
 
 
     return (
@@ -85,7 +85,7 @@ const ImageDetails = () => {
                     </div>
 
                     <div className='details__description__icons'>
-                        <Download style={{ fontSize: '50px', cursor: 'pointer' }} />
+                        <Download style={{ fontSize: '50px', cursor: 'pointer' }} onClick={() => handleDownload(image)} />
                         <Delete style={{ fontSize: '50px', cursor: 'pointer' }} onClick={handleDelete} />
                         <Edit style={{ fontSize: '50px', cursor: 'pointer' }} onClick={handleModalOpen} />
                     </div>

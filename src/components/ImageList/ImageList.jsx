@@ -5,6 +5,8 @@ import { getFavoriteImages, addFavorite, removeFavorite } from '../../features/f
 import { filterThunk } from '../../features/search/filterThunk';
 import './ImageList.css'
 import { FavoriteBorderOutlined, FavoriteOutlined, Download } from '@mui/icons-material';
+import { handleDownload } from '../../utils/download';
+import { isFavorite } from '../../utils/favorites';
 
 
 
@@ -17,11 +19,6 @@ const ImageList = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [images, setImages] = useState([]);
 
-
-
-    const isFavorite = (image, favorites) => {
-        return favorites?.some((favorite) => favorite.id === image.id)
-    }
 
     const handleFavorite = (image) => {
         isFavorite(image, favorites) ? dispatch(removeFavorite(image.id)) : dispatch(addFavorite(image));
@@ -86,7 +83,7 @@ const ImageList = () => {
                                         :
                                         <FavoriteBorderOutlined className='imgList__card__icon__heart' onClick={() => { handleFavorite(image) }} />
                                 }
-                                <Download className='imgList__card__icon__download' />
+                                <Download className='imgList__card__icon__download' onClick={() => handleDownload(image)} />
                             </div>
                         ))
                 }

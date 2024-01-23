@@ -5,14 +5,12 @@ import { getFavoriteImages, addFavorite, removeFavorite, sortFavorite } from '..
 import { Favorite, Download } from '@mui/icons-material';
 
 import './FavoritesList.css'
+import { isFavorite } from '../../utils/favorites';
 
 const FavoritesList = () => {
     const dispatch = useDispatch();
     const favorites = useSelector(getFavoriteImages);
 
-    const isFavorite = (image, favorites) => {
-        return favorites?.some((favorite) => favorite.id === image.id)
-    }
 
     const handleFavorite = (image) => {
         isFavorite(image, favorites) ? dispatch(removeFavorite(image.id)) : dispatch(addFavorite(image));
