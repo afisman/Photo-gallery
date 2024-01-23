@@ -41,7 +41,7 @@ const Navbar = () => {
                         </IconButton>
                         <input type="text"
                             className='searchBar__input'
-                            placeholder='Search images ...'
+                            placeholder='Search images'
                             value={searchTerm}
                             onChange={(e) => {
                                 setSearchTerm(e.target.value)

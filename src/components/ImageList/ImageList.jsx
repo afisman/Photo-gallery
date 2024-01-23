@@ -58,9 +58,10 @@ const ImageList = () => {
     return (
         <div className="container__list">
             <select
-                name=""
+                name="listFilters"
                 id="listFilters"
                 onChange={handleFilter}
+                className='img__filters'
             >
                 <option value="/"></option>
                 <option value="building">Building</option>

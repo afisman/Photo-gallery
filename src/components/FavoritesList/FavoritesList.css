@@ -1,11 +1,18 @@
 .favContainer {
     margin-top: 5rem;
+    text-align: center;
+}
 
+.favFilters {
+    border: none;
+    background-color: #EDE8E8;
+    border-radius: 5em;
+    padding: .5rem 1rem;
 }
 
 .favList {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr;
     gap: 2rem;
     padding: 3rem;
 }
@@ -56,9 +63,23 @@
     transform: scale(1.1);
 }
 
-@media screen and (max-width:540px) {
-    .fav List {
-        grid-template-columns: 1fr;
+@media screen and (min-width:540px) {
+    .favList {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media screen and (min-width:780px) {
+    .favList {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+@media screen and (min-width:1124px) {
+    .favList {
+        grid-template-columns: repeat(4, 1fr);
     }
 
 }

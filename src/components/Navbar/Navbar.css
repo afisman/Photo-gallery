@@ -9,17 +9,18 @@
     justify-content: space-between;
     align-items: center;
     height: 80px;
-    margin-bottom: 10rem;
 }
 
 .logo-img {
-    width: 80px;
-    height: 80px;
+    width: 5rem;
+    height: 5rem;
 }
 
 .searchBar {
     background-color: #EDE8E8;
     border-radius: 5em;
+    display: flex;
+    width: 9rem;
 }
 
 .searchBar__icon {
@@ -32,19 +33,54 @@
     background-color: transparent;
 }
 
+.searchBar__input:focus {
+    border: none;
+}
+
 .navBar__btn {
     margin-right: 2rem;
-    padding: .5rem 1.5rem;
+    padding: .5rem 1rem;
     border: none;
     background-color: black;
     color: white;
     border-radius: 5em;
     cursor: pointer;
-    width: 8rem;
+    width: 6rem;
 }
 
 .navBar__btn:hover {
     background-color: white;
     color: black;
     border: 1px solid black;
+}
+
+@media screen and (min-width: 420px) {
+    .searchBar {
+        width: 10rem;
+    }
+
+    .navBar__btn {
+        width: 8rem;
+    }
+}
+
+@media screen and (min-width: 540px) {
+    .searchBar {
+        width: 16rem;
+    }
+
+    .navBar__btn {
+        width: 8rem;
+        padding: .5rem 1.5rem;
+    }
+}
+
+@media screen and (min-width: 780px) {
+    .searchBar {
+        width: 30rem;
+    }
+
+    .navBar__btn {
+        width: 8rem;
+    }
 }
