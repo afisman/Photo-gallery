@@ -88,6 +88,10 @@ const ImageDetails = () => {
                         <Download style={{ fontSize: '50px', cursor: 'pointer' }} onClick={() => handleDownload(image)} />
                         <Delete style={{ fontSize: '50px', cursor: 'pointer' }} onClick={handleDelete} />
                         <Edit style={{ fontSize: '50px', cursor: 'pointer' }} onClick={handleModalOpen} />
+                        <KeyboardReturn
+                            onClick={() => navigate('/favorites')}
+                            style={{ fontSize: '50px', cursor: 'pointer' }}
+                        />
                     </div>
                 </div>
             </div>
