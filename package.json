@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "http://photo-gallery-website.s3-website.eu-north-1.amazonaws.com/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

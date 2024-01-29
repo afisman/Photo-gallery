@@ -23,14 +23,12 @@ export const favoritesSlice = createSlice({
             ))
             localStorage.setItem("favorites", JSON.stringify(state.favoriteImages));
         },
-        sortFavorite: (state, action) => {
-            state.favoriteImages = state.favoriteImages.sort((a, b) => a[action.payload] < b[action.payload] ? 1 : -1)
-        }
+
     }
 });
 
 export const getFavoriteImages = (state) => state.favorites.favoriteImages;
 
-export const { addFavorite, removeFavorite, updateFavorite, sortFavorite } = favoritesSlice.actions;
+export const { addFavorite, removeFavorite, updateFavorite } = favoritesSlice.actions;
 
 export default favoritesSlice.reducer;

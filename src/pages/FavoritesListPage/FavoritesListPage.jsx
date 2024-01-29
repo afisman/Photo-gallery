@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFavoriteImages, addFavorite, removeFavorite, sortFavorite } from '../../features/favorites/favoritesSlice';
+import { getFavoriteImages, addFavorite, removeFavorite } from '../../features/favorites/favoritesSlice';
 import { Favorite, Download } from '@mui/icons-material';
 
 import './FavoritesListPage.css'
