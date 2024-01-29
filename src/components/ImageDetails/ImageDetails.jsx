@@ -56,11 +56,11 @@ const ImageDetails = () => {
                         <div className='modal__icons'>
                             <Save
                                 onClick={handleUpdate}
-                                style={{ fontSize: '50px', color: 'white', cursor: 'pointer' }}
+                                style={{ fontSize: '3rem', color: 'white', cursor: 'pointer' }}
                                 className='modal__icons__icon' />
                             <KeyboardReturn
                                 onClick={handleModalClose}
-                                style={{ fontSize: '50px', color: 'white', cursor: 'pointer' }}
+                                style={{ fontSize: '3rem', color: 'white', cursor: 'pointer' }}
                                 className='modal__icons__icon' />
                         </div>
                     </form>
@@ -85,12 +85,12 @@ const ImageDetails = () => {
                     </div>
 
                     <div className='details__description__icons'>
-                        <Download style={{ fontSize: '50px', cursor: 'pointer' }} onClick={() => handleDownload(image)} />
-                        <Delete style={{ fontSize: '50px', cursor: 'pointer' }} onClick={handleDelete} />
-                        <Edit style={{ fontSize: '50px', cursor: 'pointer' }} onClick={handleModalOpen} />
+                        <Download style={{ fontSize: '3rem', cursor: 'pointer' }} onClick={() => handleDownload(image)} />
+                        <Delete style={{ fontSize: '3rem', cursor: 'pointer' }} onClick={handleDelete} />
+                        <Edit style={{ fontSize: '3rem', cursor: 'pointer' }} onClick={handleModalOpen} />
                         <KeyboardReturn
                             onClick={() => navigate('/favorites')}
-                            style={{ fontSize: '50px', cursor: 'pointer' }}
+                            style={{ fontSize: '3rem', cursor: 'pointer' }}
                         />
                     </div>
                 </div>

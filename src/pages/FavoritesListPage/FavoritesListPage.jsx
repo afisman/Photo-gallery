@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFavoriteImages, addFavorite, removeFavorite, sortFavorite } from '../../features/favorites/favoritesSlice';
 import { Favorite, Download } from '@mui/icons-material';
 
-import './FavoritesList.css'
+import './FavoritesListPage.css'
 import { isFavorite } from '../../utils/favorites';
 
-const FavoritesList = () => {
+
+const FavoritesListPage = () => {
     const dispatch = useDispatch();
     const favorites = useSelector(getFavoriteImages);
+    const [sortedFavorites, setSortedFavorites] = useState(favorites);
 
 
     const handleFavorite = (image) => {
@@ -18,7 +20,8 @@ const FavoritesList = () => {
 
     const handleSort = (e) => {
         if (e.target.value !== '') {
-            dispatch(sortFavorite(e.target.value))
+            const sortedArray = [...sortedFavorites].sort((a, b) => a[e.target.value] < b[e.target.value] ? 1 : -1);
+            setSortedFavorites(sortedArray);
         }
     }
 
@@ -34,7 +37,7 @@ const FavoritesList = () => {
             </select>
             <div className='favList'>
                 {
-                    favorites.map((favorite) => (
+                    sortedFavorites.map((favorite) => (
                         <div className='favList__card' key={favorite.id}>
                             <Link to={`/favorites/${favorite.id}`}>
                                 <img src={favorite.url} alt={favorite.description} className='favList__card__img' />
@@ -49,4 +52,4 @@ const FavoritesList = () => {
     )
 }
 
-export default FavoritesList
+export default FavoritesListPage

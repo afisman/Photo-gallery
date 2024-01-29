@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchError, fetchSearchItems, fetchStatus } from '../../features/search/searchSlice';
 import { getFavoriteImages, addFavorite, removeFavorite } from '../../features/favorites/favoritesSlice';
 import { filterThunk } from '../../features/search/filterThunk';
-import './ImageList.css'
+import './ImageListPage.css'
 import { FavoriteBorderOutlined, FavoriteOutlined, Download } from '@mui/icons-material';
 import { handleDownload } from '../../utils/download';
 import { isFavorite } from '../../utils/favorites';
 
 
 
-const ImageList = () => {
+const ImageListPage = () => {
     const dispatch = useDispatch();
     const favorites = useSelector(getFavoriteImages);
     const data = useSelector(fetchSearchItems);
@@ -90,4 +90,4 @@ const ImageList = () => {
     )
 }
 
-export default ImageList
+export default ImageListPage
