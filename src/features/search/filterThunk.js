@@ -12,9 +12,15 @@ export const filterThunk = createAsyncThunk(
             apiUrl = `https://api.unsplash.com/search/photos?client_id=${apiKey}&query=${searchTerm}`;
         }
 
+        try {
+            const response = await fetch(apiUrl);
+            const json = await response.json();
+            console.log(json)
+            return json;
 
-        const response = await fetch(apiUrl);
-        const json = await response.json();
-        return json;
+
+        } catch (error) {
+            throw new Error('There was a problem loading the images.')
+        }
     }
 )
