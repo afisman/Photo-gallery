@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFavoriteImages, addFavorite, removeFavorite } from '../../features/favorites/favoritesSlice';
@@ -24,6 +24,10 @@ const FavoritesListPage = () => {
             setSortedFavorites(sortedArray);
         }
     }
+
+    useEffect(() => {
+        setSortedFavorites(favorites)
+    }, [favorites])
 
     return (
         <div className="favContainer">
