@@ -76,8 +76,8 @@ const ImageListPage = () => {
                             <div key={image.id} className='imgList__card' >
                                 <img src={image.url} alt={image.description} className='imgList__card__img' />
                                 {
-                                    isFavorite(image) ?
-                                        <FavoriteOutlined className='imglist__card__icon__heart' onClick={() => { handleFavorite(image) }} />
+                                    isFavorite(image, favorites) ?
+                                        <FavoriteOutlined className='imgList__card__icon__heart' onClick={() => { handleFavorite(image) }} />
                                         :
                                         <FavoriteBorderOutlined className='imgList__card__icon__heart' onClick={() => { handleFavorite(image) }} />
                                 }
