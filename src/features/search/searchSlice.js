@@ -19,7 +19,6 @@ export const searchSlice = createSlice({
                 state.status = 'fulfilled';
                 if (action.payload.hasOwnProperty('results')) {
                     state.searchItems = action.payload.results;
-
                 } else {
                     state.searchItems = action.payload;
                 }

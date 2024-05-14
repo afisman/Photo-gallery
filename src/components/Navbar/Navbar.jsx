@@ -19,9 +19,11 @@ const Navbar = () => {
         isFavorites ? setIsFavorites(false) : setIsFavorites(true);
     }
 
-    const handleSubmit = () => {
-        dispatch(filterThunk(searchTerm));
+    const handleSearch = (e) => {
+        setSearchTerm(e.target.value)
+        dispatch(filterThunk(e.target.value));
     }
+
 
     return (
 
@@ -33,7 +35,7 @@ const Navbar = () => {
             </div>
             <div>
                 {(page.pathname === '/favorites' || page.pathname === '/') &&
-                    <form className='searchBar' onSubmit={handleSubmit}>
+                    <form className='searchBar' /*onSubmit={handleSubmit}*/>
 
 
                         <IconButton type="submit" aria-label="search">
@@ -43,9 +45,7 @@ const Navbar = () => {
                             className='searchBar__input'
                             placeholder='Search images'
                             value={searchTerm}
-                            onChange={(e) => {
-                                setSearchTerm(e.target.value)
-                            }}
+                            onChange={(e) => { handleSearch(e) }}
                         />
 
                     </form>}

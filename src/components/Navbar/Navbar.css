@@ -32,10 +32,12 @@
 .searchBar__input {
     border: none;
     background-color: transparent;
+    width: 100%;
+    border-radius: 0 5em 5em 0;
 }
 
 .searchBar__input:focus {
-    border: none;
+    outline: none;
 }
 
 .navBar__btn {
