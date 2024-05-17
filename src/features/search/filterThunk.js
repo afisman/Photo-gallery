@@ -15,6 +15,7 @@ export const filterThunk = createAsyncThunk(
         try {
             const response = await fetch(apiUrl);
             const json = await response.json();
+            console.log(json)
             return json;
         } catch (error) {
             throw new Error('There was a problem loading the images.')

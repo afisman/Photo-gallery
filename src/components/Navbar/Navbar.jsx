@@ -8,11 +8,12 @@ import { useDispatch } from 'react-redux';
 import { filterThunk } from '../../features/search/filterThunk';
 
 
-const Navbar = () => {
-    const [isFavorites, setIsFavorites] = useState(false);
+const Navbar = ({ favoritesList, setFavoritesList }) => {
     const [searchTerm, setSearchTerm] = useState('');
+    const [favorites, setFavorites] = useState(favoritesList)
     const dispatch = useDispatch();
     const page = useLocation();
+    const [isFavorites, setIsFavorites] = useState(page.pathname === '/favorites');
 
 
     const handleClick = () => {
@@ -20,8 +21,18 @@ const Navbar = () => {
     }
 
     const handleSearch = (e) => {
-        setSearchTerm(e.target.value)
+        setSearchTerm(e.target.value);
         dispatch(filterThunk(e.target.value));
+    }
+
+    const handleFavoriteSearch = (e) => {
+        setSearchTerm(e.target.value)
+        if (e.target.value !== '') {
+            const filteredFavorites = favorites.filter(el => el.tags?.includes(e.target.value))
+            setFavoritesList(filteredFavorites);
+        } else {
+            setFavoritesList(favorites);
+        }
     }
 
 
@@ -35,7 +46,7 @@ const Navbar = () => {
             </div>
             <div>
                 {(page.pathname === '/favorites' || page.pathname === '/') &&
-                    <form className='searchBar' /*onSubmit={handleSubmit}*/>
+                    <form className='searchBar'>
 
 
                         <IconButton type="submit" aria-label="search">
@@ -45,14 +56,14 @@ const Navbar = () => {
                             className='searchBar__input'
                             placeholder='Search images'
                             value={searchTerm}
-                            onChange={(e) => { handleSearch(e) }}
+                            onChange={page.pathname === '/favorites' ? (e) => { handleFavoriteSearch(e) } : (e) => { handleSearch(e) }}
                         />
 
                     </form>}
             </div>
             <div>
                 <Link to={isFavorites ? '/' : '/favorites'}>
-                    <button className='navBar__btn' onClick={handleClick}>{isFavorites ? 'Home' : 'Favorites'}</button>
+                    <button className='navBar__btn' onClick={() => handleClick()}>{isFavorites ? 'Favorites' : 'Home'}</button>
                 </Link>
             </div>
         </header>

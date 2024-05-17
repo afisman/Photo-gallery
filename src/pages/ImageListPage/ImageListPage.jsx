@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchError, fetchSearchItems, fetchStatus } from '../../features/search/searchSlice';
-import { getFavoriteImages, addFavorite, removeFavorite } from '../../features/favorites/favoritesSlice';
+import { addFavorite, removeFavorite } from '../../features/favorites/favoritesSlice';
 import { filterThunk } from '../../features/search/filterThunk';
 import './ImageListPage.css'
 import { FavoriteBorderOutlined, FavoriteOutlined, Download } from '@mui/icons-material';
@@ -10,9 +10,9 @@ import { isFavorite } from '../../utils/favorites';
 
 
 
-const ImageListPage = () => {
+const ImageListPage = ({ favoritesList }) => {
     const dispatch = useDispatch();
-    const favorites = useSelector(getFavoriteImages);
+
     const data = useSelector(fetchSearchItems);
     const error = useSelector(fetchError);
     const status = useSelector(fetchStatus);
@@ -21,7 +21,7 @@ const ImageListPage = () => {
 
 
     const handleFavorite = (image) => {
-        isFavorite(image, favorites) ? dispatch(removeFavorite(image.id)) : dispatch(addFavorite(image));
+        isFavorite(image, favoritesList) ? dispatch(removeFavorite(image.id)) : dispatch(addFavorite(image));
     }
 
     const handleFilter = (e) => {
@@ -35,13 +35,13 @@ const ImageListPage = () => {
             const imagesToUpdate = data.map((img) => (
                 {
                     id: img.id,
-                    url: img.urls.full,
+                    url: img.urls.small,
                     description: img.description,
                     width: img.width,
                     height: img.height,
                     likes: img.likes,
                     dateAdded: img.created_at,
-
+                    tags: img.alt_description
                 }
             ));
             setImages(imagesToUpdate);
@@ -76,7 +76,7 @@ const ImageListPage = () => {
                             <div key={image.id} className='imgList__card' >
                                 <img src={image.url} alt={image.description} className='imgList__card__img' />
                                 {
-                                    isFavorite(image, favorites) ?
+                                    isFavorite(image, favoritesList) ?
                                         <FavoriteOutlined className='imgList__card__icon__heart' onClick={() => { handleFavorite(image) }} />
                                         :
                                         <FavoriteBorderOutlined className='imgList__card__icon__heart' onClick={() => { handleFavorite(image) }} />
