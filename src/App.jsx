@@ -9,7 +9,6 @@ import Layout from './pages/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFavoriteImages } from './features/favorites/favoritesSlice';
 
-
 function App() {
 
   const dispatch = useDispatch();
