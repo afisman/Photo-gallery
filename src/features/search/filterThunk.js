@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+
 const apiKey = import.meta.env.VITE_API_KEY;
 
 export const filterThunk = createAsyncThunk(
