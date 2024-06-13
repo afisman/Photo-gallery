@@ -7,6 +7,7 @@ import './FavoritesListPage.css'
 import { isFavorite } from '../../utils/favorites';
 import { useDispatch, useSelector } from 'react-redux';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 
 const FavoritesListPage = () => {
@@ -55,17 +56,23 @@ const FavoritesListPage = () => {
 
             </select>
             <div className='favList'>
-                {
-                    sortedFavorites.map((favorite) => (
-                        <div className='favList__card' key={favorite.id}>
-                            <Link to={`/favorites/${favorite.id}`}>
-                                <img src={favorite.url} alt={favorite.description} className='favList__card__img' />
-                            </Link>
-                            <Favorite className='favList__card__icon__heart' onClick={() => { handleFavorite(favorite) }} />
 
-                            <Download className='favList__card__icon__download' />
-                        </div>))
-                }
+                <ResponsiveMasonry
+                    columnsCountBreakPoints={{ 300: 1, 700: 2, 1000: 3, 1300: 4 }}
+                >
+                    <Masonry gutter='10px'>
+                        {sortedFavorites.map((favorite) => (
+                            <div className='favList__card' key={favorite.id}>
+                                <Link to={`/favorites/${favorite.id}`}>
+                                    <img src={favorite.url} alt={favorite.description} className='favList__card__img' />
+                                </Link>
+                                <Favorite className='favList__card__icon__heart' onClick={() => { handleFavorite(favorite) }} />
+
+                                <Download className='favList__card__icon__download' />
+                            </div>))}
+                    </Masonry>
+                </ResponsiveMasonry>
+
             </div>
         </div>
     )

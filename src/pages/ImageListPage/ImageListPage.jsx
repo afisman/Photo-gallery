@@ -8,6 +8,7 @@ import { FavoriteBorderOutlined, FavoriteOutlined, Download } from '@mui/icons-m
 import { handleDownload } from '../../utils/download';
 import { isFavorite } from '../../utils/favorites';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 
 
@@ -68,6 +69,7 @@ const ImageListPage = () => {
             setIsLoading(false);
         }
     }, [dispatch, status])
+
     return (
         <div className="container__list">
             <SearchBar handleSearch={handleSearch} searchTerm={searchTerm} />
@@ -89,18 +91,38 @@ const ImageListPage = () => {
                     isLoading ? (
                         <p>Loading images ...</p>
                     ) :
-                        images.map((image) => (
-                            <div key={image.id} className='imgList__card' >
-                                <img src={image.url} alt={image.description} className='imgList__card__img' />
-                                {
-                                    isFavorite(image, favorites) ?
-                                        <FavoriteOutlined className='imgList__card__icon__heart' onClick={() => { handleFavorite(image) }} />
-                                        :
-                                        <FavoriteBorderOutlined className='imgList__card__icon__heart' onClick={() => { handleFavorite(image) }} />
-                                }
-                                <Download className='imgList__card__icon__download' onClick={() => handleDownload(image)} />
-                            </div>
-                        ))
+                        <>
+                            <ResponsiveMasonry
+                                columnsCountBreakPoints={{ 300: 1, 700: 2, 1000: 3, 1300: 4 }}
+                            >
+                                <Masonry gutter='10px'>
+                                    {images.map((image) => (
+                                        <div key={image.id} className='imgList__card' >
+                                            <img src={image.url} alt={image.description} className='imgList__card__img' />
+                                            {
+                                                isFavorite(image, favorites) ?
+                                                    <FavoriteOutlined className='imgList__card__icon__heart' onClick={() => { handleFavorite(image) }} />
+                                                    :
+                                                    <FavoriteBorderOutlined className='imgList__card__icon__heart' onClick={() => { handleFavorite(image) }} />
+                                            }
+                                            <Download className='imgList__card__icon__download' onClick={() => handleDownload(image)} />
+                                        </div>
+                                    ))}
+                                </Masonry>
+                            </ResponsiveMasonry>
+                        </>
+                    // images.map((image) => (
+                    //     <div key={image.id} className='imgList__card' >
+                    //         <img src={image.url} alt={image.description} className='imgList__card__img' />
+                    //         {
+                    //             isFavorite(image, favorites) ?
+                    //                 <FavoriteOutlined className='imgList__card__icon__heart' onClick={() => { handleFavorite(image) }} />
+                    //                 :
+                    //                 <FavoriteBorderOutlined className='imgList__card__icon__heart' onClick={() => { handleFavorite(image) }} />
+                    //         }
+                    //         <Download className='imgList__card__icon__download' onClick={() => handleDownload(image)} />
+                    //     </div>
+                    // ))
                 }
             </div >
         </div>
