@@ -22,7 +22,9 @@ const FavoritesListPage = () => {
 
     const handleSort = (e) => {
         if (e.target.value !== '') {
-            const sortedArray = [...favorites].sort((a, b) => a[e.target.value] < b[e.target.value] ? 1 : -1);
+            console.log(sortedFavorites)
+            const sortedArray = [...sortedFavorites].sort((a, b) => a[e.target.value] < b[e.target.value] ? 1 : -1);
+            console.log(sortedArray)
             setSortedFavorites(sortedArray);
         }
     }
@@ -39,7 +41,7 @@ const FavoritesListPage = () => {
 
     useEffect(() => {
         setSortedFavorites(favorites)
-    }, [favorites, handleFavorite])
+    }, [favorites])
 
     return (
         <div className="favContainer">
@@ -69,4 +71,4 @@ const FavoritesListPage = () => {
     )
 }
 
-export default FavoritesListPage
+export default FavoritesListPage;

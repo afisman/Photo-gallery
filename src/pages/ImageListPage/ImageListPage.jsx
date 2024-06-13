@@ -30,14 +30,14 @@ const ImageListPage = () => {
 
     const handleFavorite = (image) => {
         if (isFavorite(image, favorites)) {
-            dispatch(removeFavorite(image.id))
+            dispatch(removeFavorite(image.id));
         } else {
             dispatch(addFavorite(image));
         }
     }
 
     const handleFilter = (e) => {
-        dispatch(filterThunk(e.target.value))
+        dispatch(filterThunk(e.target.value));
     }
 
     const handleImages = (images) => {
