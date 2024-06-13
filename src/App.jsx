@@ -13,14 +13,16 @@ function App() {
 
   const dispatch = useDispatch();
   const favorites = useSelector(getFavoriteImages);
-  const [favoritesList, setFavoritesList] = useState(favorites)
+  const [favoritesList, setFavoritesList] = useState(favorites);
+
+
 
   return (
     <>
       <Routes>
-        <Route path='/' element={<Layout favoritesList={favoritesList} setFavoritesList={setFavoritesList} />}>
-          <Route index element={<ImageListPage favoritesList={favoritesList} setFavoritesList={setFavoritesList} />} />
-          <Route path='favorites' element={<FavoritesListPage favoritesList={favoritesList} setFavoritesList={setFavoritesList} />} />
+        <Route path='/' element={<Layout />}>
+          <Route index element={<ImageListPage />} />
+          <Route path='favorites' element={<FavoritesListPage />} />
         </Route>
         <Route path='/favorites/:id' element={<ImageDetails />} />
       </Routes>

@@ -1,34 +1,49 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { addFavorite, removeFavorite } from '../../features/favorites/favoritesSlice';
+import { addFavorite, getFavoriteImages, removeFavorite } from '../../features/favorites/favoritesSlice';
 import { Favorite, Download } from '@mui/icons-material';
 
 import './FavoritesListPage.css'
 import { isFavorite } from '../../utils/favorites';
+import { useDispatch, useSelector } from 'react-redux';
+import SearchBar from '../../components/SearchBar/SearchBar';
 
 
-const FavoritesListPage = ({ favoritesList }) => {
+const FavoritesListPage = () => {
 
-    const [sortedFavorites, setSortedFavorites] = useState(favoritesList);
-
+    const [sortedFavorites, setSortedFavorites] = useState([]);
+    const dispatch = useDispatch();
+    const favorites = useSelector(getFavoriteImages);
+    const [searchTerm, setSearchTerm] = useState('');
 
     const handleFavorite = (image) => {
-        isFavorite(image, favoritesList) ? dispatch(removeFavorite(image.id)) : dispatch(addFavorite(image));
+        isFavorite(image, favorites) ? dispatch(removeFavorite(image.id)) : dispatch(addFavorite(image));
     }
 
     const handleSort = (e) => {
         if (e.target.value !== '') {
-            const sortedArray = [...favoritesList].sort((a, b) => a[e.target.value] < b[e.target.value] ? 1 : -1);
+            const sortedArray = [...favorites].sort((a, b) => a[e.target.value] < b[e.target.value] ? 1 : -1);
             setSortedFavorites(sortedArray);
         }
     }
 
+    const handleFavoriteSearch = (e) => {
+        setSearchTerm(e.target.value)
+        if (e.target.value !== '') {
+            const filteredFavorites = favorites.filter(el => el.tags?.includes(e.target.value))
+            setSortedFavorites(filteredFavorites);
+        } else {
+            setSortedFavorites(favorites);
+        }
+    }
+
     useEffect(() => {
-        setSortedFavorites(favoritesList)
-    }, [favoritesList])
+        setSortedFavorites(favorites)
+    }, [favorites, handleFavorite])
 
     return (
         <div className="favContainer">
+            <SearchBar handleSearch={handleFavoriteSearch} searchTerm={searchTerm} />
             <select name="" id="favSort" onChange={handleSort} className='favFilters'>
                 <option value="">Filter</option>
                 <option value="width">Width</option>

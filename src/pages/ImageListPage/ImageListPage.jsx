@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchError, fetchSearchItems, fetchStatus } from '../../features/search/searchSlice';
-import { addFavorite, removeFavorite } from '../../features/favorites/favoritesSlice';
+import { addFavorite, getFavoriteImages, removeFavorite } from '../../features/favorites/favoritesSlice';
 import { filterThunk } from '../../features/search/filterThunk';
 import './ImageListPage.css'
 import { FavoriteBorderOutlined, FavoriteOutlined, Download } from '@mui/icons-material';
 import { handleDownload } from '../../utils/download';
 import { isFavorite } from '../../utils/favorites';
+import SearchBar from '../../components/SearchBar/SearchBar';
 
 
 
-const ImageListPage = ({ favoritesList }) => {
+const ImageListPage = () => {
     const dispatch = useDispatch();
 
     const data = useSelector(fetchSearchItems);
@@ -18,14 +19,29 @@ const ImageListPage = ({ favoritesList }) => {
     const status = useSelector(fetchStatus);
     const [isLoading, setIsLoading] = useState(true);
     const [images, setImages] = useState([]);
+    const favorites = useSelector(getFavoriteImages);
+    const [searchTerm, setSearchTerm] = useState('');
 
+
+    const handleSearch = (e) => {
+        setSearchTerm(e.target.value);
+        dispatch(filterThunk(e.target.value));
+    }
 
     const handleFavorite = (image) => {
-        isFavorite(image, favoritesList) ? dispatch(removeFavorite(image.id)) : dispatch(addFavorite(image));
+        if (isFavorite(image, favorites)) {
+            dispatch(removeFavorite(image.id))
+        } else {
+            dispatch(addFavorite(image));
+        }
     }
 
     const handleFilter = (e) => {
         dispatch(filterThunk(e.target.value))
+    }
+
+    const handleImages = (images) => {
+        setImages(images);
     }
 
     useEffect(() => {
@@ -44,7 +60,7 @@ const ImageListPage = ({ favoritesList }) => {
                     tags: img.alt_description
                 }
             ));
-            setImages(imagesToUpdate);
+            handleImages(imagesToUpdate)
             setIsLoading(false);
 
         } else if (status === 'rejected') {
@@ -54,6 +70,7 @@ const ImageListPage = ({ favoritesList }) => {
     }, [dispatch, status])
     return (
         <div className="container__list">
+            <SearchBar handleSearch={handleSearch} searchTerm={searchTerm} />
             <select
                 name="listFilters"
                 id="listFilters"
@@ -76,7 +93,7 @@ const ImageListPage = ({ favoritesList }) => {
                             <div key={image.id} className='imgList__card' >
                                 <img src={image.url} alt={image.description} className='imgList__card__img' />
                                 {
-                                    isFavorite(image, favoritesList) ?
+                                    isFavorite(image, favorites) ?
                                         <FavoriteOutlined className='imgList__card__icon__heart' onClick={() => { handleFavorite(image) }} />
                                         :
                                         <FavoriteBorderOutlined className='imgList__card__icon__heart' onClick={() => { handleFavorite(image) }} />
