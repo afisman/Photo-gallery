@@ -8,6 +8,7 @@ import { isFavorite } from '../../utils/favorites';
 import { useDispatch, useSelector } from 'react-redux';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
+import { handleDownload } from '../../utils/download';
 
 
 const FavoritesListPage = () => {
@@ -68,7 +69,7 @@ const FavoritesListPage = () => {
                                 </Link>
                                 <Favorite className='favList__card__icon__heart' onClick={() => { handleFavorite(favorite) }} />
 
-                                <Download className='favList__card__icon__download' />
+                                <Download className='favList__card__icon__download' onClick={() => handleDownload(favorite)} />
                             </div>))}
                     </Masonry>
                 </ResponsiveMasonry>

@@ -111,18 +111,6 @@ const ImageListPage = () => {
                                 </Masonry>
                             </ResponsiveMasonry>
                         </>
-                    // images.map((image) => (
-                    //     <div key={image.id} className='imgList__card' >
-                    //         <img src={image.url} alt={image.description} className='imgList__card__img' />
-                    //         {
-                    //             isFavorite(image, favorites) ?
-                    //                 <FavoriteOutlined className='imgList__card__icon__heart' onClick={() => { handleFavorite(image) }} />
-                    //                 :
-                    //                 <FavoriteBorderOutlined className='imgList__card__icon__heart' onClick={() => { handleFavorite(image) }} />
-                    //         }
-                    //         <Download className='imgList__card__icon__download' onClick={() => handleDownload(image)} />
-                    //     </div>
-                    // ))
                 }
             </div >
         </div>
