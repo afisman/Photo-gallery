@@ -28,24 +28,28 @@
     font-family: poppins, sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
+    color: #EDE8E8;
 }
 
 .details__description p {
     font-family: poppins, sans-serif;
     font-size: 1rem;
     font-weight: 400;
+    color: #EDE8E8;
 }
 
 .details__description h4 {
     font-family: poppins, sans-serif;
     font-size: 1.2rem;
     font-weight: 600;
+    color: #EDE8E8;
 }
 
 
 .details__description__icons {
     display: flex;
     justify-content: space-around;
+    color: #EDE8E8;
 }
 
 .details__description__icons__icon {

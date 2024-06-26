@@ -6,7 +6,8 @@ import ImageDetails from './components/ImageDetails/ImageDetails'
 import FavoritesListPage from './pages/FavoritesListPage/FavoritesListPage';
 import ImageListPage from './pages/ImageListPage/ImageListPage';
 import Layout from './pages/Layout';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         </Route>
         <Route path='/favorites/:id' element={<ImageDetails />} />
       </Routes>
+      <ToastContainer />
     </>
   )
 }

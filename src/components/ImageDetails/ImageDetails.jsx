@@ -9,6 +9,8 @@ import './ImageDetails.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Modal } from '@mui/material';
 import { handleDownload } from '../../utils/download';
+import swal from 'sweetalert';
+import { toast } from 'react-toastify';
 
 
 const ImageDetails = () => {
@@ -24,8 +26,24 @@ const ImageDetails = () => {
     const handleModalClose = () => setModalOpen(false)
 
     const handleDelete = () => {
-        dispatch(removeFavorite(image.id));
-        navigate('/favorites');
+        swal({
+            title: "Are you sure you want to remove this image from your favorites?",
+            icon: "warning",
+            buttons: {
+                cancel: true,
+                confirm: true
+            },
+            dangerMode: true
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    dispatch(removeFavorite(image.id));
+                    navigate('/favorites');
+                    toast('Image deleted successfully!!');
+                } else {
+                    toast('Your image is safe!')
+                }
+            })
     }
 
     const handleUpdate = () => {
