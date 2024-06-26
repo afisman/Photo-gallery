@@ -1,6 +1,7 @@
 .container__list {
     margin-top: 5rem;
     text-align: center;
+    background-color: #464646;
 }
 
 .img__filters {
@@ -38,6 +39,11 @@
     padding: .2rem;
     cursor: pointer;
 }
+
+.clicked {
+    color: red;
+}
+
 
 .imgList__card__icon__download {
     position: absolute;
