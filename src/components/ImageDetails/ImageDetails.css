@@ -48,7 +48,7 @@
 
 .details__description__icons {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     color: #EDE8E8;
 }
 
@@ -106,7 +106,7 @@
     }
 
     .details__description {
-        padding-top: 0;
+        padding: 1rem;
         display: flex;
         flex-direction: column-reverse;
     }

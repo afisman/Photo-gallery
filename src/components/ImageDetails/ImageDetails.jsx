@@ -39,9 +39,13 @@ const ImageDetails = () => {
                 if (willDelete) {
                     dispatch(removeFavorite(image.id));
                     navigate('/favorites');
-                    toast('Image deleted successfully!!');
+                    toast('Image deleted successfully!!', {
+                        autoClose: 2000,
+                    });
                 } else {
-                    toast('Your image is safe!')
+                    toast('Your image is safe!', {
+                        autoClose: 2000,
+                    });
                 }
             })
     }
@@ -52,8 +56,11 @@ const ImageDetails = () => {
             description: editData,
         }
 
-        dispatch(updateFavorite(updateData))
-        handleModalClose()
+        dispatch(updateFavorite(updateData));
+        handleModalClose();
+        toast('Image description changed successfully!!', {
+            autoClose: 2000,
+        });
     }
 
 
