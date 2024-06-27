@@ -20,7 +20,7 @@ const Navbar = () => {
             </div>
             <div>
                 <Link to={isFavorites ? '/' : '/favorites'}>
-                    <button className='navBar__btn' onClick={() => handleClick()}>{isFavorites ? 'Go Home' : 'Go Favorites'}</button>
+                    <button className='navBar__btn' onClick={() => handleClick()}>{isFavorites ? 'Home' : 'Favorites'}</button>
                 </Link>
             </div>
         </header>

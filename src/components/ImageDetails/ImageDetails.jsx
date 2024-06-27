@@ -77,15 +77,17 @@ const ImageDetails = () => {
                             onChange={(e) => setEditData(e.target.value)}
                             cols="30"
                             rows="10"
+                            placeholder='Edit your description here'
                         />
                         <div className='modal__icons'>
                             <Save
+                                onKe
                                 onClick={handleUpdate}
-                                style={{ fontSize: '3rem', color: 'white', cursor: 'pointer' }}
+                                style={{ fontSize: '2rem', color: 'white', cursor: 'pointer' }}
                                 className='modal__icons__icon' />
                             <KeyboardReturn
                                 onClick={handleModalClose}
-                                style={{ fontSize: '3rem', color: 'white', cursor: 'pointer' }}
+                                style={{ fontSize: '2rem', color: 'white', cursor: 'pointer' }}
                                 className='modal__icons__icon' />
                         </div>
                     </form>
@@ -106,6 +108,14 @@ const ImageDetails = () => {
                         <div>
                             <h4>Likes</h4>
                             <p>{image.likes}</p>
+                        </div>
+                        <div>
+                            <h4>Size</h4>
+                            <p>{image.width} x {image.height}</p>
+                        </div>
+                        <div>
+                            <h4>Tags</h4>
+                            <p>{image.tags}</p>
                         </div>
                     </div>
 
