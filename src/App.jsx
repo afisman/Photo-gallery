@@ -1,12 +1,11 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-
-import './App.css'
-import ImageDetails from './components/ImageDetails/ImageDetails'
+import { ToastContainer } from 'react-toastify';
+import ImageDetails from './pages/ImageDetails/ImageDetails'
 import FavoritesListPage from './pages/FavoritesListPage/FavoritesListPage';
 import ImageListPage from './pages/ImageListPage/ImageListPage';
 import Layout from './pages/Layout';
-import { ToastContainer } from 'react-toastify';
+import './App.css'
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
